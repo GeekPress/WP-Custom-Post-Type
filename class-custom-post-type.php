@@ -68,9 +68,8 @@ class Custom_Post_Type {
     	  $plural     = $singular . 's';
 		  
 		  
-		  $labels = is_array( $labels ) ? $labels : array( 'name' => $labels );
-		  
 		  // Default
+	      $labels = is_array( $labels ) ? $labels : array( 'name' => $labels );
 	      $this->labels = array_merge(
 		      array(  
 		           'name'                  => $plural,  
@@ -181,7 +180,7 @@ class Custom_Post_Type {
   		}
   		
   		add_filter('map_meta_cap', 
-  				   function ( $caps, $cap, $user_id, $args ) use( $slug ) {
+  				   function ( $caps, $cap, $user_id, $args ) use ( $slug ) {
 	  				   
 	  				    /* If editing, deleting, or reading a client, get the post and post type object. */
 						if ( 'edit_' . $slug == $cap || 'delete_' . $slug == $cap || 'read_' . $slug == $cap ) {
@@ -269,14 +268,9 @@ class Custom_Post_Type {
 	
 	
 	/*
-	 * function add_custom_post_type
+	 * function register_post_type
 	 *
 	 * Declare and configure a new post type
-	 *
-	 * @param string $slug
-	 * @param array $args
-	 * @param array $labels
-	 * @param array $roles
 	 *
 	*/
 	
@@ -286,7 +280,7 @@ class Custom_Post_Type {
 		  $roles 	= $this->roles;
 		  $args 	= $this->args;
 		  
-		  if( $slug != 'post' && $slug != 'page' && !post_type_exists( $slug ) ) {
+		  if( !post_type_exists( $slug ) ) {
 			  add_action('init', function() use( $slug, $args, $roles ) {
 				
 					if( $roles ) {
@@ -317,7 +311,7 @@ class Custom_Post_Type {
 	/*
 	 * function add_taxonomy
 	 *
-	 * Declare and configure a new custom type post
+	 * Declare and configure a new taxonomy for a CPT
 	 *
 	 * @param string $slug
 	 * @param array $labels
@@ -332,7 +326,7 @@ class Custom_Post_Type {
     	 $plural     = $singular . 's';
 		  
 		 // Default
-		 $labels = is_array( $labels ) ? $labels : array( $labels );
+		 $labels = is_array( $labels ) ? $labels : array( 'name' => $labels );
 	     $labels = array_merge(
 		      array(  
 		           'name'                  => $plural,  
