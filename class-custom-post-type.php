@@ -342,8 +342,7 @@ class Custom_Post_Type {
 		$args = array_merge(
 			  array(
 			    'hierarchical' => true,
-				'labels' => $labels,
-				'rewrite' => array( 'slug' => $slug, 'with_front' => false )
+				'labels' => $labels
 			  )
 			  ,
 			  $args
