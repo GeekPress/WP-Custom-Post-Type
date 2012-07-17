@@ -13,7 +13,7 @@ class Custom_Post_Type {
 		  $this->set_slug( $post_type_slug );
 		  
 		  // Set labels of the CPT
-		  $this->set_labels( $post_type_slug, $labels );
+		  $this->set_labels( $post_type_slug, (array)$labels );
 		  
 		  // Set args of the CPT
 		  $this->set_args( $args );
@@ -60,16 +60,14 @@ class Custom_Post_Type {
 	 *
 	*/
 	
-	function set_labels( $slug, $labels ) 
+	function set_labels( $slug, $labels = array() ) 
 	{
 		  
 		  //Capitilize the words and make it plural  
     	  $singular   = ucwords( preg_replace( '#([_-])#', ' ', $slug ) );  
     	  $plural     = $singular . 's';
 		  
-		  
 		  // Default
-	      $labels = is_array( $labels ) ? $labels : array( 'name' => $labels );
 	      $this->labels = array_merge(
 		      array(  
 		           'name'                  => $plural,  
@@ -326,7 +324,6 @@ class Custom_Post_Type {
     	 $plural     = $singular . 's';
 		  
 		 // Default
-		 $labels = is_array( $labels ) ? $labels : array( 'name' => $labels );
 	     $labels = array_merge(
 		      array(  
 		           'name'                  => $plural,  
