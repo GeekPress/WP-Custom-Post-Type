@@ -71,7 +71,7 @@ class Custom_Post_Type {
 	      $this->labels = array_merge(
 		      array(  
 		           'name'                  => $plural,  
-		           'singular_name'         => singular,  
+		           'singular_name'         => $singular,  
 		           'menu_name'             => $plural  
 		       )
 		       ,
